@@ -7,7 +7,7 @@ Automated reroller for Taimanin Squad that detects star ratings on character car
 <img width="1906" height="842" alt="script" src="https://github.com/user-attachments/assets/49a11148-53c2-40c6-a686-21aa6d890f49" />
 
 - ✨ Automatically detects 3, 4, and 5-star cards
-- 🔄 Continuously rerolls until desired cards are obtained
+- 🔄 Continuously rerolls until desired # of 5-star cards are obtained
 - 🎯 Multi-template support for different window sizes
 - 🐛 Debug mode with screenshot annotations
 - ⌨️ Easy exit with ESC or Ctrl+C
