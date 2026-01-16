@@ -1,0 +1,126 @@
+==============================================================================
+REROLLER SCRIPT - COMMAND LINE PARAMETERS
+==============================================================================
+
+USAGE:
+  python reroller.py [OPTIONS]
+
+DESCRIPTION:
+  Automated gacha game reroller that detects star ratings on character cards
+  and automatically rerolls until the desired number of 5-star cards is found.
+
+==============================================================================
+AVAILABLE PARAMETERS
+==============================================================================
+
+-max_attempts <number>
+  Maximum number of reroll attempts before stopping.
+  Default: 9999999
+  Example: -max_attempts 50
+  
+-min_5_star_cards <number>
+  Minimum number of 5-star cards required to stop rerolling.
+  Default: 3
+  Example: -min_5_star_cards 2
+  
+-match_threshold <0.0-1.0>
+  Template matching confidence threshold. Higher values require more exact
+  matches but reduce false positives. Lower values are more lenient but may
+  match incorrect elements.
+  Default: 0.80
+  Recommended range: 0.70 - 0.90
+  Example: -match_threshold 0.75
+  
+-debug_mode <true/false>
+  Enable debug mode to save annotated screenshots of each attempt showing
+  detected stars and buttons. Useful for troubleshooting.
+  Default: false
+  Example: -debug_mode true
+  
+-roll_delay <seconds>
+  Number of seconds to wait after clicking the reroll button before checking
+  for stars again. Adjust based on your game's animation/loading speed.
+  Default: 3.0
+  Example: -roll_delay 5.0
+  
+-screenshot_dir <path>
+  Directory where debug screenshots will be saved (only used if debug_mode
+  is enabled).
+  Default: screenshots
+  Example: -screenshot_dir "my_rolls"
+  
+-exit_key <key>
+  Keyboard key to press to immediately stop the script.
+  Default: esc
+  Example: -exit_key f10
+
+==============================================================================
+USAGE EXAMPLES
+==============================================================================
+
+1. Basic usage with defaults:
+   python reroller.py
+
+2. Stop after 100 attempts, require only 2 five-star cards:
+   python reroller.py -max_attempts 100 -min_5_star_cards 2
+
+3. Enable debug mode with lower threshold for troubleshooting:
+   python reroller.py -debug_mode true -match_threshold 0.70
+
+4. Slow game with long animations, increase delay:
+   python reroller.py -roll_delay 5.0
+
+5. Combine multiple parameters:
+   python reroller.py -max_attempts 50 -min_5_star_cards 2 -debug_mode true -roll_delay 4.0
+
+==============================================================================
+TEMPLATE FILES
+==============================================================================
+
+The script requires template images to detect stars and buttons:
+
+STAR TEMPLATES:
+  - star_template.png (required)
+  - star_template2.png (optional - for different window sizes)
+  - star_template3.png (optional)
+  - etc.
+
+BUTTON TEMPLATES:
+  - recruit_button.png (required)
+  - recruit_button2.png (optional - for different window sizes)
+  - recruit_button3.png (optional)
+  - etc.
+
+The script will automatically use whichever template matches best at the
+current window size and resolution.
+
+==============================================================================
+TROUBLESHOOTING
+==============================================================================
+
+If the script isn't detecting stars or buttons correctly:
+
+1. Enable debug mode to see what's being detected:
+   python reroller.py -debug_mode true
+
+2. Lower the match threshold if nothing is being detected:
+   python reroller.py -match_threshold 0.70
+
+3. Check the debug screenshots in the screenshots folder to see:
+   - What the script is seeing (debug_screen_gray.png)
+   - Your template images (debug_template_*.png)
+   - Heat map of matches (debug_heatmap.png)
+
+4. Capture new templates at your current window size if the game looks
+   different than your templates
+
+5. Add multiple template images for different window sizes
+
+==============================================================================
+KEYBOARD CONTROLS
+==============================================================================
+
+ESC (or configured exit key): Stop the script immediately
+Ctrl+C: Also stops the script immediately
+
+==============================================================================
