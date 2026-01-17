@@ -87,7 +87,6 @@ If you want the script to look for specific characters:
    - **AND** at least one of those 5-star cards is the character you saved.
 Example:
 <img width="775" height="221" alt="image" src="https://github.com/user-attachments/assets/9bb6d660-3892-4e99-a6e2-efc398032aae" />
-Character detected:
 <img width="843" height="338" alt="image" src="https://github.com/user-attachments/assets/7aee25b5-6df2-4033-b217-e7bdc5187b2c" />
 
 
