@@ -6,9 +6,10 @@ Automated reroller for Taimanin Squad that detects star ratings on character car
 
 <img width="1906" height="842" alt="script" src="https://github.com/user-attachments/assets/49a11148-53c2-40c6-a686-21aa6d890f49" />
 
-- ✨ Automatically detects 3, 4, and 5-star cards
+- ✨ Automatically detects 3, 4, and 5-star cards using DBSCAN clustering.
+- ✨ Character Filter, Reroll until you get a specific character (add your character in `/target_characters`).
 - 🔄 Continuously rerolls until desired # of 5-star cards are obtained
-- 🎯 Multi-template support for different window sizes
+- 🎯 Resolution Independent, Auto-scales templates (0.6x to 1.2x) to support different window sizes without recapturing.
 - 🐛 Debug mode with screenshot annotations
 - ⌨️ Easy exit with ESC or Ctrl+C
 - ⚙️ Fully customizable via command-line parameters
@@ -19,6 +20,8 @@ Automated reroller for Taimanin Squad that detects star ratings on character car
    Download from [python.org](https://www.python.org/downloads/)
 
 2. **Install required libraries**
+-m pip install -r requirements.txt
+or
 ```bash
    pip install opencv-python numpy pyautogui scikit-learn keyboard pillow
 ```
@@ -26,9 +29,7 @@ Automated reroller for Taimanin Squad that detects star ratings on character car
 3. **Prepare template images**
    - Take a screenshot of a star icon and save as `star_template.png`
    - Take a screenshot of the "Re-recruit" button and save as `recruit_button.png`
-   - (Optional) Create additional templates for different window sizes:
-     - `star_template2.png`, `star_template3.png`, etc.
-     - `recruit_button2.png`, `recruit_button3.png`, etc.
+   - Add your own character screenshot to `/target_characters` or copy the ones on `/characters_list`
 
 ## Usage
 
@@ -69,6 +70,24 @@ python reroller.py -roll_delay 5.0
 ```bash
 python reroller.py -max_attempts 100 -min_5_star_cards 2 -debug_mode true -roll_delay 4.0
 ```
+**Folder Structure:**
+/reroller.py
+/star_template.png
+/recruit_button.png
+/characters_list/      <-- some characters screenshots
+/target_characters/    <-- Put characters you want here
+/debug_logs/           <-- Logs
+
+## Character Targeting (Optional)
+If you want the script to look for specific characters:
+1. On the folder named `target_characters`.
+2. Place a small `.png` crop of the character's face inside. You can use the ones on `/characters_list`
+3. The script will now **only stop** if:
+   - The total number of 5-star cards meets your criteria (e.g., 3).
+   - **AND** at least one of those 5-star cards is the character you saved.
+Example:
+<img width="775" height="221" alt="image" src="https://github.com/user-attachments/assets/9bb6d660-3892-4e99-a6e2-efc398032aae" />
+<img width="1857" height="834" alt="3" src="https://github.com/user-attachments/assets/c40e3dd3-85b4-4069-8a0d-380c2a373622" />
 
 ## Parameters
 
